@@ -11,6 +11,19 @@ load_dotenv()
 # --- OpenAI API KEY ---
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
+# --- 첫 화면: 배경 이미지와 시작 버튼 ---
+if "started" not in st.session_state:
+    st.session_state["started"] = False
+
+if not st.session_state["started"]:
+    st.image("comforting_card.png", use_container_width=True)
+    # 버튼을 가로 중앙 정렬
+    col1, col2, col3 = st.columns([2, 1, 2])
+    with col2:
+        if st.button("시작"):
+            st.session_state["started"] = True
+    st.stop()
+
 # --- 제목 ---
 st.title("감정 위로 카드 생성기 :heartpulse:")
 
